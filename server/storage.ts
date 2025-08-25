@@ -13,6 +13,7 @@ interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(insertUser: InsertUser): Promise<User>;
+  updateUserCredentials(id: string, credentials: { username: string; password: string }): Promise<User>;
   
   // Profile methods
   getProfile(): Promise<Profile | undefined>;
@@ -39,6 +40,8 @@ interface IStorage {
   // Contact methods
   createContact(contactData: InsertContact): Promise<Contact>;
   getContacts(): Promise<Contact[]>;
+  updateContact(id: string, contactData: Partial<Contact>): Promise<Contact>;
+  deleteContact(id: string): Promise<void>;
   
   // Admin settings methods
   getAdminSettings(): Promise<AdminSettings[]>;
@@ -61,6 +64,15 @@ export class DatabaseStorage implements IStorage {
     const [user] = await db
       .insert(users)
       .values(insertUser)
+      .returning();
+    return user;
+  }
+  
+  async updateUserCredentials(id: string, credentials: { username: string; password: string }): Promise<User> {
+    const [user] = await db
+      .update(users)
+      .set({ username: credentials.username, password: credentials.password })
+      .where(eq(users.id, id))
       .returning();
     return user;
   }
@@ -180,6 +192,19 @@ export class DatabaseStorage implements IStorage {
   
   async getContacts(): Promise<Contact[]> {
     return await db.select().from(contacts).orderBy(contacts.createdAt);
+  }
+  
+  async updateContact(id: string, contactData: Partial<Contact>): Promise<Contact> {
+    const [contact] = await db
+      .update(contacts)
+      .set(contactData)
+      .where(eq(contacts.id, id))
+      .returning();
+    return contact;
+  }
+  
+  async deleteContact(id: string): Promise<void> {
+    await db.delete(contacts).where(eq(contacts.id, id));
   }
   
   // Admin settings methods

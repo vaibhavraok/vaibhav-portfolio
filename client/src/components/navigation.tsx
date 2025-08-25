@@ -58,13 +58,6 @@ export default function Navigation({ onAdminClick }: NavigationProps) {
                 Projects
               </button>
               <button 
-                onClick={() => scrollToSection("education")}
-                className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
-                data-testid="link-education"
-              >
-                Education
-              </button>
-              <button 
                 onClick={() => scrollToSection("contact")}
                 className="text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
                 data-testid="link-contact"
@@ -137,13 +130,6 @@ export default function Navigation({ onAdminClick }: NavigationProps) {
               data-testid="link-mobile-projects"
             >
               Projects
-            </button>
-            <button 
-              onClick={() => scrollToSection("education")}
-              className="block px-3 py-2 text-gray-600 hover:text-primary"
-              data-testid="link-mobile-education"
-            >
-              Education
             </button>
             <button 
               onClick={() => scrollToSection("contact")}

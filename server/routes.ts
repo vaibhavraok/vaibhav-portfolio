@@ -156,6 +156,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.put("/api/achievements/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const achievementData = insertAchievementSchema.parse(req.body);
+      const achievement = await storage.updateAchievement(id, achievementData);
+      res.json(achievement);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid achievement data" });
+    }
+  });
+
+  app.delete("/api/achievements/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteAchievement(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete achievement" });
+    }
+  });
+
   // Contact routes
   app.post("/api/contact", async (req, res) => {
     try {
@@ -176,6 +197,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.put("/api/contacts/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { replied } = req.body;
+      const contact = await storage.updateContact(id, { replied });
+      res.json(contact);
+    } catch (error) {
+      res.status(400).json({ message: "Invalid contact data" });
+    }
+  });
+
+  app.delete("/api/contacts/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteContact(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete contact" });
+    }
+  });
+
   // Admin settings routes
   app.get("/api/admin/settings", async (req, res) => {
     try {
@@ -193,6 +235,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(setting);
     } catch (error) {
       res.status(400).json({ message: "Invalid settings data" });
+    }
+  });
+
+  app.put("/api/admin/credentials", async (req, res) => {
+    try {
+      const { username, password, newUsername, newPassword } = req.body;
+      const user = await storage.getUserByUsername(username);
+      
+      if (!user || user.password !== password) {
+        return res.status(401).json({ message: "Current credentials are invalid" });
+      }
+      
+      const updatedUser = await storage.updateUserCredentials(user.id, {
+        username: newUsername,
+        password: newPassword
+      });
+      
+      res.json({ success: true, user: { id: updatedUser.id, username: updatedUser.username } });
+    } catch (error) {
+      res.status(400).json({ message: "Failed to update credentials" });
     }
   });
 
