@@ -1,0 +1,28 @@
+Create me a portfolio as same as (exact) that i provided you these images are of my portfolio design and i need it exactly same and one more is admin login button in settings icon who can edit or update the details all the details can be updated use neon postgearsql database and emailjs for email connection and for the Technical skills add Logos instead of text
+Html: https://img.icons8.com/?size=100&id=20909&format=png&color=000000
+c=https://img.icons8.com/?size=100&id=25423&format=png&color=000000
+similar add logos for all technical skills
+
+Add this photo as profile picture and save the admin username as Vaibhav K and password as VRK07 and in the admin dashboard all the details(section,logos by entering the link,updating skills,certificates,projects and every thing can be updateable alone with profile and admin username and password too and update technical skills by dividing it into Programming Languages: C, C++, C#, Java, Python, R, Kotlin
+Frontend: HTML, CSS, JavaScript, TypeScript, React.js, Vue.js, Next.js, Tailwind CSS, Bootstrap
+Backend: Node.js, Express.js, Django, Flask, Spring Boot, NestJS
+Databases: MySQL, PostgreSQL, MongoDB (MongoDB Compass)
+Tools & Technologies: Visual Studio Code, Eclipse, PyCharm, Git, Postman, MySQL Workbench, Docker, Figma, Vapi
+beside technology section add Soft skills section (copy soft skills section as same as (exact) that i provided you these images are of my portfolio design)
+and for email sending using emailjs
+this is my service id : service_b4scoan
+Browser script
+In order to get started using EmailJS on your website just paste the following code snippet before closing tag, with the correct public key:
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"> </script> <script type="text/javascript"> (function(){ emailjs.init({ publicKey: "GvVYlMnmCcP-ipG_n", }); })(); </script>
+this is my template id :template_gmo4whk
+and this are the links :
+📞 Call: +91 7204372199
+
+✉️ Gmail: vaibhavraok0123@gmail.com
+
+💼 LinkedIn: linkedin.com/in/vaibhav-k-3b826631a
+
+👨‍💻 GitHub: github.com/vaibhavraok
+
+and for all project links ,resume download ,certificates redirect to GitHub link
