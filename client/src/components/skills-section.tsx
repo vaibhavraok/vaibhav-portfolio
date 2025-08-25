@@ -21,7 +21,8 @@ export default function SkillsSection() {
     frontend: "Frontend",
     backend: "Backend", 
     database: "Databases",
-    tools: "Frameworks & Tools"
+    tools: "Frameworks & Tools",
+    cloud: "Cloud Plathforms"
   };
 
   const softSkills = [

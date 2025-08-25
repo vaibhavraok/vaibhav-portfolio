@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -742,6 +742,7 @@ function SkillDialog({
                 <SelectItem value="backend">Backend</SelectItem>
                 <SelectItem value="database">Database</SelectItem>
                 <SelectItem value="tools">Tools</SelectItem>
+                <SelectItem value="cloud">Cloud Platforms</SelectItem>
                 <SelectItem value="soft">Soft Skills</SelectItem>
               </SelectContent>
             </Select>
@@ -928,16 +929,19 @@ function AchievementDialog({
     achievedAt: "",
   });
 
-  useState(() => {
+  useEffect(() => {
+  if (isOpen) {   
     if (achievement) {
       setFormData({
-        title: achievement.title || "",
-        description: achievement.description || "",
-        type: achievement.type || "certificate",
-        issuer: achievement.issuer || "",
-        certificateUrl: achievement.certificateUrl || "",
-        verified: achievement.verified || true,
-        achievedAt: achievement.achievedAt ? new Date(achievement.achievedAt).toISOString().split('T')[0] : "",
+        title: achievement.title ?? "",
+        description: achievement.description ?? "",
+        type: achievement.type ?? "certificate",
+        issuer: achievement.issuer ?? "",
+        certificateUrl: achievement.certificateUrl ?? "",
+        verified: achievement.verified ?? true,
+        achievedAt: achievement.achievedAt
+          ? new Date(achievement.achievedAt).toISOString().split("T")[0]
+          : "",
       });
     } else {
       setFormData({
@@ -950,7 +954,8 @@ function AchievementDialog({
         achievedAt: "",
       });
     }
-  });
+  }
+}, [achievement, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

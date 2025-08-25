@@ -30,8 +30,8 @@ export default function ContactSection() {
       
       // Send email via EmailJS
       await sendContactEmail({
-        from_name: data.name,
-        from_email: data.email,
+        name: data.name,
+        Email: data.email,
         subject: data.subject,
         message: data.message,
       });
