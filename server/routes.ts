@@ -24,6 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       (req as any).session = { userId: user.id, username: user.username };
       res.json({ success: true, user: { id: user.id, username: user.username } });
     } catch (error) {
+      console.error("Login error:", error);
       res.status(400).json({ message: "Invalid request data" });
     }
   });

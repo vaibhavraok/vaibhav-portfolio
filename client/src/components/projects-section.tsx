@@ -13,7 +13,7 @@ export default function ProjectsSection() {
   const sortedProjects = projects?.sort((a, b) => {
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    return a.order - b.order;
+    return (a.order || 0) - (b.order || 0);
   }) || [];
 
   const getProjectIcon = (title: string) => {
@@ -83,7 +83,7 @@ export default function ProjectsSection() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => window.open(project.codeUrl, "_blank")}
+                      onClick={() => window.open(project.codeUrl || "", "_blank")}
                       className="flex-1 text-sm"
                       data-testid={`button-code-${project.id}`}
                     >
@@ -94,7 +94,7 @@ export default function ProjectsSection() {
                   {project.demoUrl && (
                     <Button
                       size="sm"
-                      onClick={() => window.open(project.demoUrl, "_blank")}
+                      onClick={() => window.open(project.demoUrl || "", "_blank")}
                       className="flex-1 text-sm bg-primary hover:bg-accent"
                       data-testid={`button-demo-${project.id}`}
                     >

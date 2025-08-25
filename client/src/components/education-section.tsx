@@ -82,7 +82,7 @@ export default function EducationSection() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => window.open(achievement.certificateUrl, "_blank")}
+                    onClick={() => window.open(achievement.certificateUrl || "", "_blank")}
                     className="w-full"
                     data-testid={`button-certificate-${achievement.id}`}
                   >

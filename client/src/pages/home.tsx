@@ -11,7 +11,7 @@ import AdminModal from "@/components/admin-modal";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <AdminModal />
       <HeroSection />
       <AboutSection />
       <SkillsSection />

@@ -1,6 +1,6 @@
 import emailjs from '@emailjs/browser';
 
-interface EmailData {
+interface EmailData extends Record<string, unknown> {
   from_name: string;
   from_email: string;
   subject: string;
